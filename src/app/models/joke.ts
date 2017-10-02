@@ -1,9 +1,11 @@
 export class Joke {
-    public hide: boolean;
+  public hide: boolean ;
 
-    constructor(public setup: string, punchline: string) { }
+  constructor(public setup: string, public punchline: string) {
+    this.hide = true;
+  }
 
-    toggle() {
-        this.hide = !this.hide;
-    }
+  toggle() {
+    this.hide = !this.hide;
+  }
 }
