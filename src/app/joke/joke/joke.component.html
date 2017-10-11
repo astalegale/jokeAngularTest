@@ -1,10 +1,12 @@
-<div class="card card-block">
-    <h4 class="card-title">
-        {{joke.setup}}
-    </h4>
-    <p class="card-text" [hidden]="joke.hide">{{joke.punchline}}</p>
-    <a (click)="joke.toggle()" class="btn btn-warning">Tell Me
+<div class="card" appCcCardHover>
+    <div class="card-block">
+        <h4 class="card-title">
+            {{joke.setup}}
+        </h4>
+        <p class="card-text" [style.display]="'none'">{{joke.punchline}}</p>
+        <a (click)="joke.toggle()" class="btn btn-warning">Tell Me
     </a>
-    <a (click)="deleteJoke()" class="btn btn-danger">Delete
+        <a (click)="deleteJoke()" class="btn btn-danger">Delete
     </a>
+    </div>
 </div>
