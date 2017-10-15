@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Renderer, HostBinding} from '@angular/core';
+import { Directive, ElementRef, HostListener, Renderer, HostBinding, Input } from '@angular/core';
 
 
 @Directive({
@@ -6,22 +6,26 @@ import { Directive, ElementRef, HostListener, Renderer, HostBinding} from '@angu
 })
 export class CcCardHoverDirective {
 
-@HostBinding('class.card-outline-primary') private isHovering  = false;
+    @HostBinding('class.border-primary') private isHovering = false;
 
+    // tslint:disable-next-line:no-input-rename
+    @Input('appCcCardHover') config = {
+        querySelector: '.card-text'
+    };
 
-    constructor(private el: ElementRef, private renderer: Renderer) {
+    constructor(private renderer: Renderer, private el: ElementRef) {
         // el.nativeElement.style.backgroundColor = 'gray';
     }
 
-@HostListener('mouseover') onMouseOver() {
-     const punchlineEl = this.el.nativeElement.querySelector('.card-text');
-     this.renderer.setElementStyle(punchlineEl, 'display', 'block');
-this.isHovering = true;
-}
+    @HostListener('mouseover') onMouseOver() {
+        const punchlineEl = this.el.nativeElement.querySelector(this.config.querySelector);
+        this.renderer.setElementStyle(punchlineEl, 'display', 'block');
+        this.isHovering = true;
+    }
 
-@HostListener('mouseout') onMouseOut() {
-     const punchlineEl = this.el.nativeElement.querySelector('.card-text');
-     this.renderer.setElementStyle(punchlineEl, 'display', 'none');
-this.isHovering = false;
-}
+    @HostListener('mouseout') onMouseOut() {
+        const punchlineEl = this.el.nativeElement.querySelector(this.config.querySelector);
+        this.renderer.setElementStyle(punchlineEl, 'display', 'none');
+        this.isHovering = false;
+    }
 }
